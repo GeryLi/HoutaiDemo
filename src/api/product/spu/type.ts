@@ -46,8 +46,10 @@ export interface AllTradMark extends ResponseData {
 export interface SpuImage {
   id?: number | string
   spuId?: number
-  imgName: string
-  imgUrl: string
+  imgName?: string
+  imgUrl?: string
+  name?: string
+  url?: string
 }
 
 // 商品图片返回数据类型
@@ -59,23 +61,28 @@ export interface ReqSpuImage extends ResponseData {
 export interface SpuSaleAttrValueList {
   id?: number | string
   spuId?: number
-  baseSaleAttrId: number
+  baseSaleAttrId: number | String
   saleAttrName?: string
-  spuSaleAttrValueName: string
+  spuSaleAttrValueName?: string
   isChecked?: null
   createTime?: null
   updateTime?: null
+  saleAttrValue?: string
+  saleAttrValueName?: string
 }
 
 // 商品属性的数据类型
 export interface SpuSaleAttr {
   id?: number | string
   spuId?: number
-  baseSaleAttrId: number
+  baseSaleAttrId: number | string
   saleAttrName: string
   spuSaleAttrValueList: SpuSaleAttrValueList[]
   createTime?: null
   updateTime?: null
+  flag?: boolean
+  saleAttrValue?: string
+  saleIdAndValue?: string
 }
 
 // 返回商品属性的数据类型
@@ -90,4 +97,31 @@ export interface AllSaleAttrData {
 // 返回所有Spu的数据蕾西
 export interface AllSaleAttr extends ResponseData {
   data: AllSaleAttrData[]
+}
+
+export interface SkuAttrValueList {
+  attrId: number | string
+  valueId: number | string
+  attrName?: string
+  id?: number
+  skuId?: number
+  valueName?: string
+}
+
+export interface SkuSaleAttrValueList {
+  saleAttrId: number | string
+  saleAttrValueld: number | string
+}
+
+export interface AddSkuData {
+  category3Id: number | string
+  spuId: number | string
+  tmId: number | string
+  skuName: string
+  price: number | string
+  weight: number | string
+  skuDesc: string
+  skuDefaultImg: string
+  skuAttrValueList?: SkuAttrValueList[]
+  skuSaleAttrValueList?: SkuSaleAttrValueList[]
 }

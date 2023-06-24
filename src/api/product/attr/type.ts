@@ -31,6 +31,7 @@ export interface Attr {
   categoryId: number | string
   categoryLevel: number
   attrValueList: AttrValueArr
+  attrIdandValue?: string
 }
 // 存储每一个属性对象的数组类型
 export type attrArray = Attr[]

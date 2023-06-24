@@ -4,17 +4,16 @@
 
   <!-- 中心区域部  -->
   <el-card style="margin: 10px 0">
-    <el-button
-      type="primary"
-      size="default"
-      icon="plus"
-      :disabled="!CategoryStore.c3ID"
-      @click="addSpu"
-    >
-      添加SPU
-    </el-button>
-
     <div v-show="changeCurrent === 0">
+      <el-button
+        type="primary"
+        size="default"
+        icon="plus"
+        :disabled="!CategoryStore.c3ID"
+        @click="addSpu"
+      >
+        添加SPU
+      </el-button>
       <el-table border width="100%" style="margin: 20px 0" :data="spuData">
         <el-table-column
           label="序号"
@@ -40,6 +39,7 @@
               size="small"
               icon="plus"
               title="添加SKU"
+              @click="addSku(row)"
             ></el-button>
             <el-button
               type="primary"
@@ -69,7 +69,11 @@
       @handChangeCurrent="sonHandCurrent"
       ref="refspuForm"
     />
-    <skuForm v-show="changeCurrent === 2" />
+    <skuForm
+      v-show="changeCurrent === 2"
+      @handChangeCurrent="sonHandCurrent"
+      ref="refskuForm"
+    />
 
     <!-- 分页器 -->
     <el-pagination
@@ -102,6 +106,7 @@ const total = ref<number>()
 const changeCurrent = ref<number>(0)
 // 子组件的ref对象
 const refspuForm = ref()
+const refskuForm = ref()
 
 // 定义获取数据的方法
 const getSpuData = async () => {
@@ -127,6 +132,7 @@ const sizeChange = () => {
   getSpuData()
 }
 
+// 监测c3id 请求数据
 watch(
   () => CategoryStore.c3ID,
   () => {
@@ -139,6 +145,7 @@ watch(
 const addSpu = () => {
   changeCurrent.value = 1
   isShow.value = !isShow.value
+  refspuForm.value.addSpu(CategoryStore.c3ID)
 }
 // 修改Spu
 const editSpu = (row: SpuData) => {
@@ -148,9 +155,17 @@ const editSpu = (row: SpuData) => {
 }
 
 // 子组件通知父组件修改属性
-const sonHandCurrent = () => {
+const sonHandCurrent = (id: number) => {
   isShow.value = !isShow.value
-  changeCurrent.value = 0
+  changeCurrent.value = id
+  getSpuData()
+}
+
+// 添加sku
+const addSku = (row: SpuData) => {
+  isShow.value = !isShow.value
+  changeCurrent.value = 2
+  refskuForm.value.getData(CategoryStore.c1ID, CategoryStore.c2ID, row)
 }
 </script>
 

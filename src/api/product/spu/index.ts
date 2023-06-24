@@ -6,6 +6,7 @@ import {
   ReqSpuSaleAttr,
   AllSaleAttr,
   SpuData,
+  AddSkuData,
 } from './type'
 
 enum API {
@@ -26,6 +27,9 @@ enum API {
 
   // 追加和更新spu
   ADDORUPDATESPU_URL = 'admin/product/saveSpuInfo',
+
+  // 追加sku
+  ADDSKU_URL = '/admin/product/saveSkuInfo',
 }
 // 获取已有spu数据
 export const reqHasSpu = (page: number, limit: number, c3Id: number | string) =>
@@ -52,3 +56,7 @@ export const reqAllSaleAttr = () =>
 // 添加新的spu接口
 export const reqAddOrUpdateSpu = (data: SpuData) =>
   request.post<any, any>(API.ADDORUPDATESPU_URL, data)
+
+// 添加sku
+export const reqAddSku = (data: AddSkuData) =>
+  request.post<any, any>(API.ADDSKU_URL, data)

@@ -22,10 +22,13 @@ enum API {
 }
 
 export const reqC1 = () => request.get<any, CatGoryResData>(API.C1_URL)
+
 export const reqC2 = (c1id: number | string) =>
   request.get<any, CatGoryResData>(API.C2_URL + c1id)
+
 export const reqC3 = (c2id: number | string) =>
   request.get<any, CatGoryResData>(API.C3_URL + c2id)
+
 export const getAttrInfo = (
   c1id: number | string,
   c2id: number | string,
