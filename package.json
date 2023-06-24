@@ -1,0 +1,52 @@
+{
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --open",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src",
+    "fix": "eslint src --fix",
+    "format": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\"",
+    "lint:eslint": "eslint src/**/*.{ts,vue} --cache --fix",
+    "lint:style": "stylelint src/**/*.{css,scss,vue} --cache --fix",
+    "build:test": "vue-tsc && vite build --mode test",
+    "build:pro": "vue-tsc && vite build --mode production"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "element-plus": "^2.3.4",
+    "nprogress": "^0.2.0",
+    "pinia": "^2.1.1",
+    "pinia-plugin-persistedstate": "^3.1.0",
+    "require": "^2.4.20",
+    "sass": "^1.62.1",
+    "vue": "^3.2.47",
+    "vue-router": "^4.2.0"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.21.8",
+    "@types/node": "^20.2.0",
+    "@types/nprogress": "^0.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.6",
+    "@typescript-eslint/parser": "^5.59.6",
+    "@vitejs/plugin-vue": "^4.1.0",
+    "eslint": "^8.40.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.13.0",
+    "mockjs": "^1.1.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.0.2",
+    "unplugin-auto-import": "^0.16.0",
+    "unplugin-vue-components": "^0.24.1",
+    "vite": "^4.3.2",
+    "vite-plugin-mock": "^3.0.0",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vue-tsc": "^1.4.2"
+  }
+}
