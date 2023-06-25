@@ -125,3 +125,8 @@ export interface AddSkuData {
   skuAttrValueList?: SkuAttrValueList[]
   skuSaleAttrValueList?: SkuSaleAttrValueList[]
 }
+
+// skuinfo
+export interface SkuInfoDate extends ResponseData {
+  data: AddSkuData[]
+}

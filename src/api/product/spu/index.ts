@@ -7,6 +7,7 @@ import {
   AllSaleAttr,
   SpuData,
   AddSkuData,
+  SkuInfoDate,
 } from './type'
 
 enum API {
@@ -30,6 +31,12 @@ enum API {
 
   // 追加sku
   ADDSKU_URL = '/admin/product/saveSkuInfo',
+
+  // 获取skuget请求 需要id
+  SKUINFO_URL = '/admin/product/findBySpuId/',
+
+  // 删除spu
+  DELETESPU_URL = '/admin/product/deleteSpu/',
 }
 // 获取已有spu数据
 export const reqHasSpu = (page: number, limit: number, c3Id: number | string) =>
@@ -60,3 +67,9 @@ export const reqAddOrUpdateSpu = (data: SpuData) =>
 // 添加sku
 export const reqAddSku = (data: AddSkuData) =>
   request.post<any, any>(API.ADDSKU_URL, data)
+
+export const reqSkuList = (id: number) =>
+  request.get<any, SkuInfoDate>(API.SKUINFO_URL + id)
+
+export const reqDeleteSpu = (id: number) =>
+  request.delete<any, any>(API.DELETESPU_URL + id)

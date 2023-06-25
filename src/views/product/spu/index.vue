@@ -53,13 +53,22 @@
               size="small"
               icon="view"
               title="查看SKU列表"
+              @click="handLookSku(row)"
             ></el-button>
-            <el-button
-              type="primary"
-              size="small"
-              icon="delete"
-              title="删除SPU"
-            ></el-button>
+
+            <el-popconfirm
+              :title="`确定要删除${row.spuName}吗？`"
+              @confirm="deleteSpu(row)"
+            >
+              <template #reference>
+                <el-button
+                  type="primary"
+                  size="small"
+                  icon="delete"
+                  title="删除SPU"
+                ></el-button>
+              </template>
+            </el-popconfirm>
           </template>
         </el-table-column>
       </el-table>
@@ -74,6 +83,36 @@
       @handChangeCurrent="sonHandCurrent"
       ref="refskuForm"
     />
+
+    <!-- dlog 对话框 -->
+    <el-dialog title="Sku列表" v-model="dlogIsShow" width="30%" @close="">
+      <el-table :data="skuListArr" border stripe style="margin: 10px 0">
+        <el-table-column
+          label="SKU名字"
+          prop="skuName"
+          align="center"
+        ></el-table-column>
+        <el-table-column
+          label="SKU价格"
+          prop="price"
+          align="center"
+        ></el-table-column>
+        <el-table-column
+          label="SKU重量"
+          prop="weight"
+          align="center"
+        ></el-table-column>
+        <el-table-column label="SKU图片" align="center">
+          <template #="{ row }">
+            <img
+              :src="row.skuDefaultImg"
+              alt=""
+              style="width: 100px; height: 100px"
+            />
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-dialog>
 
     <!-- 分页器 -->
     <el-pagination
@@ -92,10 +131,17 @@
 <script lang="ts" setup>
 import { useCategoryStore } from '@/store/module/CategoryStore'
 import { watch, ref } from 'vue'
-import { reqHasSpu } from '@/api/product/spu/index'
-import { HasSpuResponseData, Records, SpuData } from '@/api/product/spu/type'
+import { reqHasSpu, reqSkuList, reqDeleteSpu } from '@/api/product/spu/index'
+import {
+  AddSkuData,
+  HasSpuResponseData,
+  Records,
+  SkuInfoDate,
+  SpuData,
+} from '@/api/product/spu/type'
 import skuForm from './skuForm.vue'
 import spuForm from './spuForm.vue'
+import { onBeforeMount } from 'vue'
 const CategoryStore = useCategoryStore()
 
 const isShow = ref(true)
@@ -108,6 +154,11 @@ const changeCurrent = ref<number>(0)
 const refspuForm = ref()
 const refskuForm = ref()
 
+// dlog 显示
+const dlogIsShow = ref<boolean>(false)
+
+// skuList
+const skuListArr = ref<AddSkuData[]>()
 // 定义获取数据的方法
 const getSpuData = async () => {
   let res: HasSpuResponseData = await reqHasSpu(
@@ -167,6 +218,33 @@ const addSku = (row: SpuData) => {
   changeCurrent.value = 2
   refskuForm.value.getData(CategoryStore.c1ID, CategoryStore.c2ID, row)
 }
+
+//handLookSku 查看Sku
+const handLookSku = async (row: SpuData) => {
+  //  显示dlog
+  let res: SkuInfoDate = await reqSkuList(row.id as number)
+  if (res.code == 200) {
+    dlogIsShow.value = true
+    skuListArr.value = res.data
+  }
+}
+
+//  删除spu
+const deleteSpu = async (row: SpuData) => {
+  let res = await reqDeleteSpu(row.id as number)
+  if (res.code == 200) {
+    ElMessage.success('删除成功')
+    getSpuData()
+  } else {
+    ElMessage.console.error()
+    ;('删除成功')
+  }
+}
+
+// 组件销毁 清除数据
+onBeforeMount(() => {
+  CategoryStore.$reset()
+})
 </script>
 
 <style scoped lang="scss"></style>

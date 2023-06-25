@@ -140,6 +140,7 @@
 import { reqAddOrUpdateAttr, reqDeleteAttr } from '@/api/product/attr'
 import { Attr, AttrValue } from '@/api/product/attr/type'
 import { useCategoryStore } from '@/store/module/CategoryStore'
+import { onBeforeMount } from 'vue'
 import { reactive, nextTick, ref, watch } from 'vue'
 
 const CategoryStore = useCategoryStore()
@@ -253,6 +254,10 @@ const handDiv = (row: AttrValue, $index: number) => {
 
   nextTick(() => inputArr.value[$index].focus())
 }
+
+onBeforeMount(() => {
+  CategoryStore.$reset()
+})
 </script>
 
 <style scoped lang="scss"></style>
