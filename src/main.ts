@@ -11,6 +11,8 @@ import 'virtual:svg-icons-register'
 import '@/styles/index.scss'
 
 import 'element-plus/dist/index.css'
+// 暗黑模式样式
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
