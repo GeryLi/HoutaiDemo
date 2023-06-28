@@ -1,29 +1,20 @@
 <template>
   <div class="box">
     <div class="top">
-      <p class="title">男女比例</p>
+      <p class="title">未来七天游客数量趋势图</p>
       <p class="bg"></p>
     </div>
-    <div class="sex">
-      <div class="man">
-        <img src="../images/man.png" alt="" />
-      </div>
-      <div class="women"><img src="../images/woman.png" alt="" /></div>
-    </div>
-    <div class="bar">
-      <p class="man">男性58%</p>
-      <p class="women">女性42%</p>
-    </div>
-    <div class="chars" ref="refChars"></div>
+    <div class="chars" ref="charsRef"></div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import * as echarts from 'echarts'
 import { onMounted, ref } from 'vue'
-const refChars = ref()
+import * as echarts from 'echarts'
+const charsRef = ref()
+
 onMounted(() => {
-  let mycharts = echarts.init(refChars.value)
+  let mycharts = echarts.init(charsRef.value)
   mycharts.setOption({
     //标题组件
     title: {
@@ -103,12 +94,12 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .box {
-  background: url(../images/dataScreen-main-lb.png) no-repeat;
-  background-size: 100% 100%;
-  margin-top: 10px;
+  background: url(../images/dataScreen-main-cb.png) no-repeat;
+  block-size: 100% 100%;
+  margin: 0 30px;
   .top {
-    margin-left: 20px;
-
+    margin-left: 10px;
+    overflow: hidden;
     .title {
       color: white;
       font-size: 20px;
@@ -122,44 +113,9 @@ onMounted(() => {
       block-size: 100% 100%;
     }
   }
-  .sex {
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding-top: 50px;
-    width: 80%;
-
-    .man {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 111px;
-      height: 115px;
-      background: url(../images/man-bg.png) no-repeat;
-      background-size: 100% 100%;
-    }
-    .women {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 111px;
-      height: 115px;
-      background: url(../images/woman-bg.png) no-repeat;
-      background-size: 100% 100%;
-    }
-  }
-  .bar {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-around;
-    color: #29fcff;
-    font-size: 16px;
-  }
   .chars {
-    margin: 0 auto;
-    height: 45px;
-    width: 80%;
+    height: calc(100% - 40px);
+    width: 100%;
   }
 }
 </style>

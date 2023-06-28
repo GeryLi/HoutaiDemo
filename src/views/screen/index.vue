@@ -8,8 +8,15 @@
           <Sex class="sex" />
           <Age class="age" />
         </div>
-        <div class="center"></div>
-        <div class="right"></div>
+        <div class="center">
+          <CenterMap class="map" />
+          <CenterLine class="line" />
+        </div>
+        <div class="right">
+          <Rank class="rank" />
+          <YearRank class="yearrank" />
+          <ContPair class="contpair" />
+        </div>
       </div>
     </div>
   </div>
@@ -22,6 +29,11 @@ import Top from './ccpns/Top.vue'
 import Sex from './ccpns/Sex.vue'
 import Tourist from './ccpns/Tourist.vue'
 import Age from './ccpns/Age.vue'
+import CenterMap from './ccpns/CenterMap.vue'
+import CenterLine from './ccpns/CenterLine.vue'
+import Rank from './ccpns/Rank.vue'
+import YearRank from './ccpns/YearRank.vue'
+import ContPair from './ccpns/ContPair.vue'
 
 const refScreen = ref()
 const getScreen = (w: number = 1920, h: number = 1080) => {
@@ -59,7 +71,7 @@ window.onresize = () => {
         display: flex;
         flex-direction: column;
         .tourist {
-          flex: 1.5;
+          flex: 1.2;
         }
         .sex,
         .age {
@@ -68,9 +80,28 @@ window.onresize = () => {
       }
       .center {
         flex: 2;
+        display: flex;
+        flex-direction: column;
+        .map {
+          flex: 4;
+        }
+        .line {
+          flex: 1;
+        }
       }
       .right {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        .rank {
+          flex: 1.2;
+        }
+        .yearrank {
+          flex: 1;
+        }
+        .contpair {
+          flex: 1;
+        }
       }
     }
   }

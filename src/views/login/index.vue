@@ -60,7 +60,7 @@ let loadingShow = ref(false)
 // 定义双向绑定的formdata
 const loginForm = reactive({
   username: 'admin',
-  password: '111111',
+  password: 'atguigu123',
 })
 
 // 获取用户小仓库
