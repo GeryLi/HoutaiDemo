@@ -226,6 +226,8 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue'
 import { ref } from 'vue'
+import { ElMessage } from 'element-plus'
+
 import {
   reqGetUser,
   reqAddOrUpdateUser,

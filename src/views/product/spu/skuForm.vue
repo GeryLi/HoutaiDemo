@@ -109,6 +109,7 @@ import { reqAddSku, reqHasSaleAttr, reqImageList } from '@/api/product/spu'
 import { SpuData } from '@/api/product/spu/type'
 import { ref } from 'vue'
 import { reactive } from 'vue'
+import { ElMessage } from 'element-plus'
 
 // 平台属性
 const attrArr = ref<Attr[]>([])

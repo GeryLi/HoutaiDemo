@@ -132,6 +132,8 @@
 import { useCategoryStore } from '@/store/module/CategoryStore'
 import { watch, ref } from 'vue'
 import { reqHasSpu, reqSkuList, reqDeleteSpu } from '@/api/product/spu/index'
+import { ElMessage } from 'element-plus'
+
 import {
   AddSkuData,
   HasSpuResponseData,
@@ -236,7 +238,7 @@ const deleteSpu = async (row: SpuData) => {
     ElMessage.success('删除成功')
     getSpuData()
   } else {
-    ElMessage.console.error()
+    ElMessage.error()
     ;('删除成功')
   }
 }

@@ -142,6 +142,7 @@ import { Attr, AttrValue } from '@/api/product/attr/type'
 import { useCategoryStore } from '@/store/module/CategoryStore'
 import { onBeforeMount } from 'vue'
 import { reactive, nextTick, ref, watch } from 'vue'
+import { ElMessage } from 'element-plus'
 
 const CategoryStore = useCategoryStore()
 // 设置一个显示添加修改面板的值

@@ -121,6 +121,8 @@ import {
 } from '@/api/product/trademark'
 import { onMounted } from 'vue'
 import { ref } from 'vue'
+import { ElMessage } from 'element-plus'
+
 import type {
   Records,
   TradeMake,

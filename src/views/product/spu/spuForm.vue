@@ -167,6 +167,8 @@ import {
   SpuSaleAttrValueList,
 } from '@/api/product/spu/type'
 import { computed } from 'vue'
+import { ElMessage } from 'element-plus'
+
 import { ref } from 'vue'
 
 const emit = defineEmits(['handChangeCurrent'])
