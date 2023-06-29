@@ -4,4 +4,5 @@ export interface stateData {
   menuRoutes: RouteRecordRaw[]
   username: string
   avatar: string
+  buttons: string[]
 }

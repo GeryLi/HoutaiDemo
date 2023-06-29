@@ -6,10 +6,7 @@ export const constantRoutes = [
     name: 'layout',
     component: () => import('@/layout/index.vue'),
     redirect: '/home',
-    meta: {
-      title: 'layout',
-      hidden: false,
-    },
+
     children: [
       {
         path: '/home',
@@ -35,17 +32,18 @@ export const constantRoutes = [
   },
   {
     path: '/acl',
-    name: 'acl',
+    name: 'Acl',
     component: () => import('@/layout/index.vue'),
     meta: {
       hidden: false,
       title: '权限管理',
       icon: 'Lock',
     },
+    redirect: '/acl/user',
     children: [
       {
         path: '/acl/user',
-        name: 'user',
+        name: 'User',
         component: () => import('@/views/acl/user/index.vue'),
         meta: {
           hidden: false,
@@ -55,7 +53,7 @@ export const constantRoutes = [
       },
       {
         path: '/acl/role',
-        name: 'role',
+        name: 'Role',
         component: () => import('@/views/acl/role/index.vue'),
         meta: {
           hidden: false,
@@ -65,7 +63,7 @@ export const constantRoutes = [
       },
       {
         path: '/acl/permission',
-        name: 'permission',
+        name: 'Permission',
         component: () => import('@/views/acl/permission/index.vue'),
         meta: {
           hidden: false,
@@ -84,6 +82,7 @@ export const constantRoutes = [
       title: '商品管理',
       icon: 'Goods',
     },
+    redirect: '/product/trademark',
     children: [
       {
         path: '/product/trademark',

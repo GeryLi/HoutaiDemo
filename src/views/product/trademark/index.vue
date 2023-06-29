@@ -1,7 +1,13 @@
 <template>
   <el-card class="box-card">
     <!-- 卡片顶部的按钮 -->
-    <el-button type="primary" size="default" icon="plus" @click="addTradMark">
+    <el-button
+      type="primary"
+      size="default"
+      icon="plus"
+      v-has="`btn.Trademark.add`"
+      @click="addTradMark"
+    >
       添加品牌
     </el-button>
     <!-- 表格组件 -->
@@ -120,6 +126,7 @@ import type {
   TradeMake,
   tradeMakeResponseData,
 } from '@/api/product/trademark/type'
+
 import type { UploadProps } from 'element-plus'
 import { reactive } from 'vue'
 // 当前页码
@@ -242,7 +249,7 @@ const agree = async () => {
 }
 
 // 自定义校验规则的方法
-const validatorTmname = (rule: any, value: any, callback: any) => {
+const validatorTmname = (_rule: any, value: any, callback: any) => {
   if (value.trim().length >= 2) {
     callback()
   } else {
@@ -250,7 +257,7 @@ const validatorTmname = (rule: any, value: any, callback: any) => {
   }
 }
 
-const validatorLogoUrl = (rule: any, value: any, callback: any) => {
+const validatorLogoUrl = (_rule: any, value: any, callback: any) => {
   if (value) {
     callback()
   } else {
